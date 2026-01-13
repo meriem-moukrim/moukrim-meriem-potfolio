@@ -130,8 +130,6 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
-
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
       <h2 className="numbered-heading">À propos de moi</h2>
@@ -140,8 +138,8 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Bonjour, je m’appelle Moukrim Meriem, stagiaire en développement web Full Stack et
-              étudiante en Développement Digital à l’OFPPT.
+              Bonjour, je m’appelle Moukrim Meriem, stagiaire en développement web Full Stack à
+              l’OFPPT.
             </p>
 
             <p>
@@ -163,10 +161,6 @@ const About = () => {
               d’apprendre auprès de professionnels et d’évoluer dans un environnement stimulant.
             </p>
           </div>
-
-          <ul className="skills-list">
-            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
-          </ul>
         </StyledText>
 
         <StyledPic>
