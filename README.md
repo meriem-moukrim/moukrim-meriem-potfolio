@@ -33,12 +33,6 @@ Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le dével
 
 <br />
 
-### 📱 Mobile
-
-<div align="center">
-  <img src="./static/readme/mobile-preview.png" alt="Aperçu Mobile" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
-</div>
-
 ## ✨ Fonctionnalités Clés
 
 - **Design Responsive** : Une expérience utilisateur fluide sur mobile, tablette et ordinateur.
@@ -60,7 +54,7 @@ Ce portfolio est construit avec des technologies modernes pour garantir performa
 | **Langage**     | JavaScript (ES6+)                                         |
 | **Styles**      | [Styled Components](https://styled-components.com/), CSS3 |
 | **Contenu**     | Markdown (pour la gestion facile des projets/jobs)        |
-| **Déploiement** | Netlify / GitHub Pages                                    |
+| **Déploiement** | Vercel (via GitHub)                                       |
 
 ## 📂 Structure du Projet
 
