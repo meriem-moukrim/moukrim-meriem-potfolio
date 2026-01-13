@@ -55,7 +55,7 @@ Ce portfolio est construit avec des technologies modernes pour garantir performa
 | **Langage**     | JavaScript (ES6+)                                         |
 | **Styles**      | [Styled Components](https://styled-components.com/), CSS3 |
 | **Contenu**     | Markdown (pour la gestion facile des projets/jobs)        |
-| **Déploiement** | Netlify / GitHub Pages                                    |
+| **Déploiement** | Vercel (via GitHub)                                 |
 
 ## 📂 Structure du Projet
 
