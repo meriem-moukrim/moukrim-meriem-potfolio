@@ -1,3 +1,7 @@
+/**
+ * Section Hero : Introduction visuelle du portfolio.
+ * Présente le nom, le titre et une brève description avec un bouton de téléchargement du CV.
+ */
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { keyframes } from 'styled-components';
@@ -17,22 +21,10 @@ const wave = keyframes`
   100% { transform: rotate(0deg); }
 `;
 
-const float = keyframes`
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
-`;
-
 const shine = keyframes`
   to {
     background-position: 200% center;
   }
-`;
-
-const pulse = keyframes`
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 `;
 
 const StyledHeroSection = styled.section`
@@ -72,7 +64,7 @@ const StyledHeroSection = styled.section`
 
   h2 {
     font-size: clamp(40px, 8vw, 80px);
-    
+
     @media (max-width: 480px) {
       font-size: 38px;
     }
@@ -83,18 +75,13 @@ const StyledHeroSection = styled.section`
     color: var(--slate); // Fallback
     line-height: 0.9;
     font-size: clamp(30px, 6vw, 70px);
-    
+
     @media (max-width: 480px) {
       font-size: 28px;
     }
-    
+
     // Gradient Animation
-    background: linear-gradient(
-      90deg, 
-      var(--slate) 0%, 
-      var(--green) 50%, 
-      var(--slate) 100%
-    );
+    background: linear-gradient(90deg, var(--slate) 0%, var(--green) 50%, var(--slate) 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -115,7 +102,7 @@ const StyledHeroSection = styled.section`
       display: inline-block;
       position: relative;
       color: var(--green);
-      
+
       &:after {
         content: '';
         position: absolute;
@@ -128,7 +115,7 @@ const StyledHeroSection = styled.section`
         transform-origin: bottom right;
         transition: transform 0.25s ease-out;
       }
-      
+
       &:hover:after {
         transform: scaleX(1);
         transform-origin: bottom left;
@@ -139,7 +126,7 @@ const StyledHeroSection = styled.section`
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
-    background: linear-gradient(135deg, var(--green) 0%, #8B3E2F 100%);
+    background: linear-gradient(135deg, var(--green) 0%, #8b3e2f 100%);
     color: var(--white) !important;
     border: none;
     padding: 0.9rem 1.8rem;
@@ -153,7 +140,7 @@ const StyledHeroSection = styled.section`
 
     &:hover,
     &:focus {
-      background: linear-gradient(135deg, #8B3E2F 0%, var(--green) 100%);
+      background: linear-gradient(135deg, #8b3e2f 0%, var(--green) 100%);
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 20px 30px -15px rgba(177, 93, 68, 0.6);
       color: var(--white) !important;
@@ -173,17 +160,18 @@ const StyledMobileSocial = styled.div`
     display: flex;
     align-items: center;
     margin-top: 30px;
-    
+
     a {
       margin-right: 25px;
       color: var(--light-slate);
       display: flex; /* Ensures the icon is centered in the link */
-      
-      svg, img {
+
+      svg,
+      img {
         width: 22px !important; /* Force size to override any other styles */
         height: 22px !important;
       }
-      
+
       &:hover,
       &:focus {
         color: var(--green);
@@ -206,30 +194,31 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const one = <h1><span className="wave-emoji">👋</span> Salut</h1>;
+  const one = (
+    <h1>
+      <span className="wave-emoji">👋</span> Salut
+    </h1>
+  );
   const two = <h2 className="big-heading">Moukrim Meriem.</h2>;
   const three = <h3 className="big-heading">développeuse Full Stack.</h3>;
   const four = (
     <>
       <p>
-        Passionné(e) par le développement web Full Stack, je suis actuellement en formation à l’OFPPT&nbsp;
+        Passionné(e) par le développement web Full Stack, je suis actuellement en formation à
+        l’OFPPT&nbsp;
         <a href="https://www.myway.ac.ma/ar" target="_blank" rel="noreferrer">
           CFPMS
         </a>
-        , où je renforce mes compétences en front-end et back-end à travers des projets concrets et de l’auto-apprentissage.
+        , où je renforce mes compétences en front-end et back-end à travers des projets concrets et
+        de l’auto-apprentissage.
       </p>
     </>
   );
   const five = (
-    <a
-      className="email-link"
-      href="/CV_Meriem.pdf"
-      target="_blank"
-      rel="noreferrer">
+    <a className="email-link" href="/CV_Meriem.pdf" target="_blank" rel="noreferrer">
       Voici mon CV !
     </a>
   );
-
 
   const six = (
     <StyledMobileSocial>

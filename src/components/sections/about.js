@@ -1,3 +1,7 @@
+/**
+ * Section About : Présentation personnelle.
+ * Contient ma biographie, ma photo et une description de mon parcours.
+ */
 import React, { useEffect, useRef } from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';

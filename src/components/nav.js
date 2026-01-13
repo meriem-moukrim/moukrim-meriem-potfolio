@@ -1,3 +1,7 @@
+/**
+ * Composant Nav : Barre de navigation principale.
+ * Comprend le logo, les liens de navigation, le bouton de thème et la gestion du menu mobile.
+ */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
@@ -7,7 +11,7 @@ import { navLinks } from '@config';
 import { loaderDelay, smoothScroll } from '@utils';
 import { useScrollDirection, usePrefersReducedMotion } from '@hooks';
 import { Menu } from '@components';
-import { IconLogo, IconHex, IconSun, IconMoon, Icon, IconLamp } from '@components/icons';
+import { IconLogo, IconHex, IconLamp } from '@components/icons';
 
 const float = keyframes`
   0% {
@@ -53,11 +57,12 @@ const StyledHeader = styled.header`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: ${props => (props.themeMode === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(5, 5, 5, 0.95)')};
+  background-color: ${props =>
+    props.themeMode === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(5, 5, 5, 0.95)'};
   backdrop-filter: blur(8px);
   filter: none !important;
   transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  padding-top: 30px; 
+  padding-top: 30px;
 
   @media (max-width: 1080px) {
     padding: 0 40px;
@@ -76,8 +81,8 @@ const StyledHeader = styled.header`
       height: var(--nav-scroll-height);
       border-radius: 50px;
       background-color: ${props.themeMode === 'light'
-        ? 'rgba(255, 255, 255, 0.7)'
-        : 'rgba(5, 5, 5, 0.7)'};
+    ? 'rgba(255, 255, 255, 0.7)'
+    : 'rgba(5, 5, 5, 0.7)'};
       backdrop-filter: blur(15px);
       border: 1px solid var(--green-tint);
       box-shadow: 0 10px 40px -10px var(--navy-shadow);
@@ -173,7 +178,7 @@ const StyledLinks = styled.div`
         position: relative; // Needed for the absolute positioning of the pseudo-element
 
         &:focus {
-           color: var(--green);
+          color: var(--green);
         }
 
         &:before {
@@ -197,11 +202,11 @@ const StyledLinks = styled.div`
         }
 
         &:hover {
-           color: var(--green);
+          color: var(--green);
 
-           &:after {
-             width: 100%;
-           }
+          &:after {
+            width: 100%;
+          }
         }
       }
     }
@@ -276,7 +281,10 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
   );
 
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop} themeMode={themeMode}>
+    <StyledHeader
+      scrollDirection={scrollDirection}
+      scrolledToTop={scrolledToTop}
+      themeMode={themeMode}>
       <StyledNav>
         {prefersReducedMotion ? (
           <>
@@ -305,7 +313,7 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
               </StyledThemeToggle>
             </StyledLinks>
 
-            <Menu toggleTheme={toggleTheme} themeMode={themeMode} isHome={isHome} />
+            <Menu toggleTheme={toggleTheme} isHome={isHome} />
           </>
         ) : (
           <>
@@ -344,7 +352,10 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
               <TransitionGroup component={null}>
                 {isMounted && (
                   <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                    <div style={{ transitionDelay: `${isHome ? (navLinks ? navLinks.length : 0) * 100 : 0}ms` }}>
+                    <div
+                      style={{
+                        transitionDelay: `${isHome ? (navLinks ? navLinks.length : 0) * 100 : 0}ms`,
+                      }}>
                       <StyledThemeToggle onClick={toggleTheme} aria-label="Toggle Theme">
                         <IconLamp />
                       </StyledThemeToggle>
@@ -357,7 +368,7 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <Menu toggleTheme={toggleTheme} themeMode={themeMode} isHome={isHome} />
+                  <Menu toggleTheme={toggleTheme} isHome={isHome} />
                 </CSSTransition>
               )}
             </TransitionGroup>

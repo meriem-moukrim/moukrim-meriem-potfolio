@@ -1,4 +1,9 @@
+/**
+ * Composant Menu : Gère le menu de navigation mobile.
+ * Comprend le bouton hamburger, le panneau latéral (sidebar) et les fonctionnalités d'accessibilité (trap focus).
+ */
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import styled, { keyframes } from 'styled-components';
 import { navLinks } from '@config';
@@ -171,7 +176,7 @@ const StyledSidebar = styled.aside`
     cursor: pointer;
     background: transparent;
     border: none;
-    
+
     &:hover {
       svg {
         animation: ${float} 2s ease-in-out infinite;
@@ -185,7 +190,7 @@ const StyledSidebar = styled.aside`
   }
 `;
 
-const Menu = ({ toggleTheme, themeMode, isHome }) => {
+const Menu = ({ toggleTheme, isHome }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -321,6 +326,11 @@ const Menu = ({ toggleTheme, themeMode, isHome }) => {
       </div>
     </StyledMenu>
   );
+};
+
+Menu.propTypes = {
+  isHome: PropTypes.bool,
+  toggleTheme: PropTypes.func.isRequired,
 };
 
 export default Menu;

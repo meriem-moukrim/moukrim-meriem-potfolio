@@ -1,3 +1,7 @@
+/**
+ * Section Featured : Projets mis en avant.
+ * Affiche les projets les plus importants avec des images et des descriptions détaillées.
+ */
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
@@ -477,7 +481,6 @@ const Featured = () => {
         Projets
       </h2>
 
-
       <StyledProjectsGrid>
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
@@ -506,7 +509,11 @@ const Featured = () => {
                           const iconImage = getImage(icon);
                           return (
                             <li key={i}>
-                              <GatsbyImage image={iconImage} alt="tech icon" className="tech-icon-img" />
+                              <GatsbyImage
+                                image={iconImage}
+                                alt="tech icon"
+                                className="tech-icon-img"
+                              />
                             </li>
                           );
                         })}
@@ -522,30 +529,35 @@ const Featured = () => {
                       )
                     )}
 
-
-
                     <div className="project-links">
                       {fullscreen && (
                         <button
                           className="project-fullscreen-inline-trigger"
                           onClick={() => setModalImage(image)}
-                          aria-label="Toggle Full Screen View"
-                        >
+                          aria-label="Toggle Full Screen View">
                           <Icon name="FullScreen" />
                         </button>
                       )}
                       {github && (
-                        <a href={github} aria-label="GitHub Link" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={github}
+                          aria-label="GitHub Link"
+                          target="_blank"
+                          rel="noopener noreferrer">
                           <Icon name="GitHub" />
                         </a>
                       )}
                       {external && (
-                        <a href={external} aria-label="External Link" className="external" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={external}
+                          aria-label="External Link"
+                          className="external"
+                          target="_blank"
+                          rel="noopener noreferrer">
                           <Icon name="External" />
                         </a>
                       )}
                     </div>
-
                   </div>
                 </div>
 
@@ -559,19 +571,26 @@ const Featured = () => {
           })}
       </StyledProjectsGrid>
 
-      {
-        modalImage && (
-          <FullscreenModal onClick={() => setModalImage(null)}>
-            <div className="modal-image-wrapper" onClick={(e) => e.stopPropagation()}>
-              <button className="close-button" onClick={() => setModalImage(null)} aria-label="Close">
-                &times;
-              </button>
-              <GatsbyImage image={modalImage} alt="Full Screen Project" objectFit="contain" />
-            </div>
-          </FullscreenModal>
-        )
-      }
-    </StyledFeaturedSection >
+      {modalImage && (
+        <FullscreenModal onClick={() => setModalImage(null)}>
+          <div
+            className="modal-image-wrapper"
+            onClick={e => e.stopPropagation()}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.stopPropagation();
+              }
+            }}
+            role="button"
+            tabIndex={0}>
+            <button className="close-button" onClick={() => setModalImage(null)} aria-label="Close">
+              &times;
+            </button>
+            <GatsbyImage image={modalImage} alt="Full Screen Project" objectFit="contain" />
+          </div>
+        </FullscreenModal>
+      )}
+    </StyledFeaturedSection>
   );
 };
 

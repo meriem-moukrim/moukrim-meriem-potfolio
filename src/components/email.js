@@ -33,7 +33,7 @@ const StyledLinkWrapper = styled.div`
     &:hover,
     &:focus {
       transform: translateY(-3px);
-      
+
       .tooltip {
         opacity: 1;
         visibility: visible;
@@ -76,7 +76,7 @@ const StyledLinkWrapper = styled.div`
 const Email = ({ isHome }) => {
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyEmail = (e) => {
+  const copyEmail = e => {
     e.preventDefault();
     navigator.clipboard.writeText(email).then(() => {
       setIsCopied(true);

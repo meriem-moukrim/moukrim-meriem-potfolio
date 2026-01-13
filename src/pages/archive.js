@@ -1,3 +1,7 @@
+/**
+ * Page Archive : Liste exhaustive de tous les projets.
+ * Affiche tous les projets réalisés sous forme de tableau triable par date.
+ */
 import React, { useRef, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';

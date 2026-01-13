@@ -1,3 +1,7 @@
+/**
+ * Fichier de configuration principale de Gatsby.
+ * Ce fichier définit les métadonnées du site (SEO) et active les différents plugins (images, styles, sources).
+ */
 const config = require('./src/config');
 
 module.exports = {
@@ -55,6 +59,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
+        // Plugins Markdown pour transformer le contenu (images, liens externes, etc.)
         plugins: [
           {
             // https://www.gatsbyjs.org/packages/gatsby-remark-external-links

@@ -1,22 +1,20 @@
+/**
+ * Section Jobs : Expériences et Certifications.
+ * Utilise un système d'onglets pour présenter le parcours académique, professionnel et les certificats obtenus.
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { CSSTransition } from 'react-transition-group';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { srConfig } from '@config';
 import { KEY_CODES } from '@utils';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
-const shine = keyframes`
-  to {
-    background-position: 200% center;
-  }
-`;
-
 const StyledMobileNav = styled.div`
   display: none;
-  
+
   @media (max-width: 600px) {
     display: flex;
     justify-content: flex-end;
@@ -30,13 +28,13 @@ const NavButton = styled.button`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1.5px solid #E07A5F;
+  border: 1.5px solid #e07a5f;
   background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: #E07A5F;
+  color: #e07a5f;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   padding: 0;
 
@@ -147,7 +145,7 @@ const StyledTabList = styled.div`
   margin: 0;
   list-style: none;
   max-width: 200px; // Limit width of the tab list
-  
+
   @media (max-width: 600px) {
     display: flex;
     overflow-x: auto;
@@ -164,7 +162,7 @@ const StyledTabList = styled.div`
 
   li {
     @media (max-width: 600px) {
-       flex: 0 0 auto; // Prevent list items from shrinking
+      flex: 0 0 auto; // Prevent list items from shrinking
     }
   }
 `;
@@ -253,29 +251,39 @@ const StyledTabPanel = styled.div`
       transform: translateY(10px);
       animation: fadeIn 0.5s forwards;
       padding-left: 20px;
-      
+
       @media (max-width: 480px) {
         padding-left: 25px;
       }
-      
+
       &:before {
         content: '▶';
         position: absolute;
         left: 0;
-        color: #E07A5F;
+        color: #e07a5f;
         font-size: var(--fz-sm);
         line-height: 12px;
-        
+
         @media (max-width: 480px) {
           top: 5px;
         }
       }
-      
-      &:nth-child(1) { animation-delay: 0.1s; }
-      &:nth-child(2) { animation-delay: 0.2s; }
-      &:nth-child(3) { animation-delay: 0.3s; }
-      &:nth-child(4) { animation-delay: 0.4s; }
-      &:nth-child(5) { animation-delay: 0.5s; }
+
+      &:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      &:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      &:nth-child(5) {
+        animation-delay: 0.5s;
+      }
     }
   }
 
@@ -294,10 +302,10 @@ const StyledTabPanel = styled.div`
     }
     font-weight: 500;
     line-height: 1.3;
-    
+
     // Color for Title
     color: var(--green);
-    
+
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -307,7 +315,7 @@ const StyledTabPanel = styled.div`
       display: block; // Change to block to prevent flex jumps
       margin-bottom: 10px;
     }
-    
+
     .title-text {
       flex: 0 1 auto;
       @media (max-width: 600px) {
@@ -324,7 +332,7 @@ const StyledTabPanel = styled.div`
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       z-index: 1;
-      
+
       @media (max-width: 600px) {
         display: inline-block;
         margin-top: 5px;
@@ -338,12 +346,7 @@ const StyledTabPanel = styled.div`
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-          120deg,
-          transparent,
-          rgba(171, 157, 105, 0.5),
-          transparent
-        );
+        background: linear-gradient(120deg, transparent, rgba(171, 157, 105, 0.5), transparent);
         transition: all 0.6s;
         z-index: -1;
       }
@@ -352,12 +355,12 @@ const StyledTabPanel = styled.div`
         transform: translateY(-3px);
         box-shadow: 0 5px 15px rgba(175, 168, 141, 0.3); // Green glow
         background-color: #d7c4991a;
-        
+
         &::before {
           left: 100%;
         }
       }
-      
+
       &:active {
         transform: translateY(-1px);
         box-shadow: 0 2px 10px rgba(100, 255, 218, 0.2);
@@ -374,14 +377,13 @@ const StyledTabPanel = styled.div`
   }
 
   .range-wrapper {
-    
     .inline-link {
-       display: inline-block;
-       position: relative;
-       color: #E07A5F;
-       text-decoration: none;
-       
-       &:after {
+      display: inline-block;
+      position: relative;
+      color: #e07a5f;
+      text-decoration: none;
+
+      &:after {
         content: '';
         position: absolute;
         width: 100%;
@@ -389,11 +391,11 @@ const StyledTabPanel = styled.div`
         height: 1px;
         bottom: 0;
         left: 0;
-        background-color: #E07A5F;
+        background-color: #e07a5f;
         transform-origin: bottom right;
         transition: transform 0.25s ease-out;
       }
-      
+
       &:hover:after {
         transform: scaleX(1);
         transform-origin: bottom left;
@@ -411,7 +413,7 @@ const StyledTabPanel = styled.div`
     gap: 15px;
 
     .range {
-       font-style: italic;
+      font-style: italic;
     }
 
     .view-cert-link {
@@ -420,13 +422,13 @@ const StyledTabPanel = styled.div`
       font-size: var(--fz-sm);
       position: relative;
       text-decoration: none;
-      
+
       &:hover {
         text-decoration: underline;
       }
-      
+
       &:before {
-        content: '↳'; 
+        content: '↳';
         margin-right: 5px;
       }
     }
@@ -446,8 +448,11 @@ const StyledTabContent = styled.div`
 
 const StyledTextContent = styled.div`
   flex: 1;
-  
-  p, ul, ol, div {
+
+  p,
+  ul,
+  ol,
+  div {
     text-align: justify;
   }
 `;
@@ -461,7 +466,7 @@ const StyledCertificateWrapper = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: var(--transition);
-  
+
   // Default state on desktop: hidden
   @media (min-width: 900px) {
     opacity: 0;
@@ -476,7 +481,7 @@ const StyledCertificateWrapper = styled.div`
 
       // Force overlay to be visible when the wrapper is shown via hover state
       .overlay {
-         opacity: 1;
+        opacity: 1;
       }
     }
   }
@@ -493,11 +498,11 @@ const StyledCertificateWrapper = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
-  
+
   &:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 30px -15px var(--navy-shadow);
-    
+
     .overlay {
       opacity: 1;
     }
@@ -516,11 +521,11 @@ const StyledOverlay = styled.div`
   align-items: center;
   opacity: 0;
   transition: var(--transition);
-  
+
   .view-circle {
     width: 80px;
     height: 80px;
-    background-color:#E07A5F ; 
+    background-color: #e07a5f;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -528,7 +533,7 @@ const StyledOverlay = styled.div`
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -568,7 +573,7 @@ const StyledButtonWrapper = styled.div`
     .view-circle-small {
       width: 50px;
       height: 50px;
-      background-color: #E07A5F;
+      background-color: #e07a5f;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -576,7 +581,7 @@ const StyledButtonWrapper = styled.div`
       color: white;
       font-weight: 600;
       font-size: 14px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -650,7 +655,7 @@ const Jobs = () => {
 
       container.scrollTo({
         left: scrollLeft,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   }, [activeTabId]);
@@ -696,13 +701,6 @@ const Jobs = () => {
     setActiveTabId(prev => (prev < jobsData.length - 1 ? prev + 1 : prev));
   };
 
-  const handleLinkClick = (e, certificate) => {
-    if (certificate) {
-      e.preventDefault();
-      setModalImage(getImage(certificate));
-    }
-  };
-
   return (
     <StyledJobsSection id="jobs" ref={revealContainer}>
       <h2 className="numbered-heading">Expériences & Certificats</h2>
@@ -732,11 +730,7 @@ const Jobs = () => {
 
         <StyledTabPanels>
           <StyledMobileNav>
-            <NavButton
-              onClick={handlePrevTab}
-              aria-label="Précédent"
-              disabled={activeTabId === 0}
-            >
+            <NavButton onClick={handlePrevTab} aria-label="Précédent" disabled={activeTabId === 0}>
               <svg viewBox="0 0 24 24">
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
@@ -744,8 +738,7 @@ const Jobs = () => {
             <NavButton
               onClick={handleNextTab}
               aria-label="Suivant"
-              disabled={activeTabId === jobsData.length - 1}
-            >
+              disabled={activeTabId === jobsData.length - 1}>
               <svg viewBox="0 0 24 24">
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
@@ -754,7 +747,7 @@ const Jobs = () => {
           {jobsData &&
             jobsData.map(({ node }, i) => {
               const { frontmatter, html } = node;
-              const { title, url, company, range, certificate } = frontmatter;
+              const { title, company, range, certificate } = frontmatter;
               const image = getImage(certificate);
 
               return (
@@ -766,28 +759,37 @@ const Jobs = () => {
                     aria-labelledby={`tab-${i}`}
                     aria-hidden={activeTabId !== i}
                     hidden={activeTabId !== i}>
-
-
-
                     <StyledTabContent>
                       <StyledTextContent>
                         <h3>
                           <span className="title-text">{title}</span>
                           {image && (
                             <StyledButtonWrapper>
-                              <a
-                                href="#"
+                              <button
+                                type="button"
                                 className="view-cert-button"
-                                onClick={(e) => { e.preventDefault(); setModalImage(image); }}
+                                onClick={e => {
+                                  e.preventDefault();
+                                  setModalImage(image);
+                                }}
                                 onMouseEnter={() => setIsHovering(true)}
-                                onMouseLeave={() => setIsHovering(false)}
-                              >
+                                onMouseLeave={() => setIsHovering(false)}>
                                 Voir certificat
-                              </a>
+                              </button>
                               <div
                                 className="cert-image-preview"
-                                onClick={(e) => { e.preventDefault(); setModalImage(image); }}
-                              >
+                                onClick={e => {
+                                  e.preventDefault();
+                                  setModalImage(image);
+                                }}
+                                onKeyDown={e => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    setModalImage(image);
+                                  }
+                                }}
+                                role="button"
+                                tabIndex={0}>
                                 <GatsbyImage image={image} alt="Certificate Preview" />
                                 <div className="image-overlay">
                                   <div className="view-circle-small">View</div>
@@ -795,9 +797,7 @@ const Jobs = () => {
                               </div>
                             </StyledButtonWrapper>
                           )}
-                          <span className="company">
-                            {company}
-                          </span>
+                          <span className="company">{company}</span>
                         </h3>
 
                         <div className="range-wrapper">
@@ -811,17 +811,27 @@ const Jobs = () => {
                         <StyledCertificateWrapper
                           className={isHovering ? 'visible' : ''}
                           onClick={() => setModalImage(image)}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              setModalImage(image);
+                            }
+                          }}
                           onMouseEnter={() => setIsHovering(true)}
                           onMouseLeave={() => setIsHovering(false)}
-                        >
-                          <GatsbyImage image={image} alt={`${title} Certificate`} objectFit="cover" style={{ height: '100%' }} />
+                          role="button"
+                          tabIndex={0}>
+                          <GatsbyImage
+                            image={image}
+                            alt={`${title} Certificate`}
+                            objectFit="cover"
+                            style={{ height: '100%' }}
+                          />
                           <StyledOverlay className="overlay">
                             <div className="view-circle">View</div>
                           </StyledOverlay>
                         </StyledCertificateWrapper>
                       )}
                     </StyledTabContent>
-
                   </StyledTabPanel>
                 </CSSTransition>
               );
@@ -831,7 +841,16 @@ const Jobs = () => {
 
       {modalImage && (
         <FullscreenModal onClick={() => setModalImage(null)}>
-          <div className="modal-image-wrapper" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="modal-image-wrapper"
+            onClick={e => e.stopPropagation()}
+            onKeyDown={e => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.stopPropagation();
+              }
+            }}
+            role="button"
+            tabIndex={0}>
             <button className="close-button" onClick={() => setModalImage(null)} aria-label="Close">
               &times;
             </button>

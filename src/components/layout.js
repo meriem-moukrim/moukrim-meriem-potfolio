@@ -1,7 +1,12 @@
+/**
+ * Composant Layout : Enveloppe globale de l'application.
+ * Il gère le thème (clair/sombre), le chargement initial (Loader),
+ * et structure la navigation, les composants latéraux et le contenu principal.
+ */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
-import { Head, Loader, Nav, Social, Email, Footer } from '@components';
+import { Head, Loader, Nav, Social, Email } from '@components';
 import { GlobalStyle, theme } from '@styles';
 
 const StyledContent = styled.div`
@@ -73,7 +78,6 @@ const Layout = ({ children, location }) => {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
 
-
           <a className="skip-to-content" href="#content">
             Skip to Content
           </a>
@@ -86,9 +90,7 @@ const Layout = ({ children, location }) => {
               <Social isHome={isHome} />
               <Email isHome={isHome} />
 
-              <div id="content">
-                {children}
-              </div>
+              <div id="content">{children}</div>
             </StyledContent>
           )}
         </ThemeProvider>

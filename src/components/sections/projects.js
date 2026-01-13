@@ -1,3 +1,7 @@
+/**
+ * Section Projects : Archive des autres projets.
+ * Présente une grille de projets secondaires sous forme de cartes avec un bouton pour voir l'archive complète.
+ */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';

@@ -1,3 +1,7 @@
+/**
+ * Page 404 : Page non trouvée.
+ * Redirige les utilisateurs vers la page d'accueil lorsqu'ils tentent d'accéder à une page inexistante.
+ */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { Helmet } from 'react-helmet';

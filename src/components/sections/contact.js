@@ -1,6 +1,10 @@
+/**
+ * Section Contact : Formulaire ou lien de contact.
+ * Invite les utilisateurs à entrer en contact par e-mail ou via les réseaux sociaux.
+ */
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { srConfig, email } from '@config';
+import { srConfig } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 import Constellation from '../constellation';
@@ -90,20 +94,21 @@ const StyledContactForm = styled.form`
   .form-group {
     display: flex;
     flex-direction: column;
-    
+
     &.full-width {
       grid-column: 1 / -1;
     }
 
     label {
-      color: #E07A5F;
+      color: #e07a5f;
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
       font-weight: 600;
       margin-bottom: 8px;
     }
 
-    input, textarea {
+    input,
+    textarea {
       background-color: var(--light-navy);
       border: 1px solid #888888; /* Even darker border */
       border-radius: var(--border-radius);
@@ -122,7 +127,7 @@ const StyledContactForm = styled.form`
       &::placeholder {
         color: var(--white);
         opacity: 0.5;
-        
+
         .light-mode & {
           color: #000000;
           opacity: 0.7;
@@ -143,7 +148,7 @@ const StyledContactForm = styled.form`
     width: max-content;
     justify-self: center;
     cursor: pointer;
-    background: linear-gradient(135deg, var(--green) 0%, #8B3E2F 100%);
+    background: linear-gradient(135deg, var(--green) 0%, #8b3e2f 100%);
     color: var(--white) !important;
     border: none;
     padding: 0.9rem 1.8rem;
@@ -152,10 +157,10 @@ const StyledContactForm = styled.form`
     letter-spacing: 1px;
     box-shadow: 0 10px 20px -10px rgba(177, 93, 68, 0.4);
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-    
+
     &:hover,
     &:focus {
-      background: linear-gradient(135deg, #8B3E2F 0%, var(--green) 100%);
+      background: linear-gradient(135deg, #8b3e2f 0%, var(--green) 100%);
       transform: translateY(-5px) scale(1.02);
       box-shadow: 0 20px 30px -15px rgba(177, 93, 68, 0.6);
       color: var(--white) !important;
@@ -181,7 +186,7 @@ const Contact = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const form = e.target;
     const data = new FormData(form);
@@ -193,8 +198,8 @@ const Contact = () => {
         method: 'POST',
         body: data,
         headers: {
-          'Accept': 'application/json'
-        }
+          Accept: 'application/json',
+        },
       });
 
       if (response.ok) {
@@ -222,25 +227,31 @@ const Contact = () => {
           <h2 className="title">Me contacter</h2>
 
           <p className="description">
-            Je suis actuellement à la recherche de nouvelles opportunités.
-            Si vous avez une question ou si vous souhaitez simplement discuter d'un projet, n'hésitez pas !
+            Je suis actuellement à la recherche de nouvelles opportunités. Si vous avez une question
+            ou si vous souhaitez simplement discuter d'un projet, n'hésitez pas !
           </p>
 
           {status && (
-            <p style={{
-              color: (status.includes('succès') || status.includes('cours')) ? 'var(--green)' : '#d00000',
-              backgroundColor: 'var(--green-tint)',
-              border: `1px solid ${(status.includes('succès') || status.includes('cours')) ? 'var(--green)' : '#d00000'}`,
-              padding: '12px 20px',
-              borderRadius: 'var(--border-radius)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--fz-xs)',
-              fontWeight: '500',
-              marginTop: '30px',
-              textAlign: 'center',
-              display: 'inline-block',
-              animation: 'fadeIn 0.3s ease-forward'
-            }}>
+            <p
+              style={{
+                color:
+                  status.includes('succès') || status.includes('cours')
+                    ? 'var(--green)'
+                    : '#d00000',
+                backgroundColor: 'var(--green-tint)',
+                border: `1px solid ${
+                  status.includes('succès') || status.includes('cours') ? 'var(--green)' : '#d00000'
+                }`,
+                padding: '12px 20px',
+                borderRadius: 'var(--border-radius)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--fz-xs)',
+                fontWeight: '500',
+                marginTop: '30px',
+                textAlign: 'center',
+                display: 'inline-block',
+                animation: 'fadeIn 0.3s ease-forward',
+              }}>
               {status}
             </p>
           )}
@@ -249,7 +260,13 @@ const Contact = () => {
         <StyledContactForm onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="first-name">Prénom</label>
-            <input type="text" id="first-name" name="firstname" placeholder="Votre prénom" required />
+            <input
+              type="text"
+              id="first-name"
+              name="firstname"
+              placeholder="Votre prénom"
+              required
+            />
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Nom</label>
@@ -265,9 +282,15 @@ const Contact = () => {
           </div>
           <div className="form-group full-width">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" placeholder="Votre message ici..." required></textarea>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Votre message ici..."
+              required></textarea>
           </div>
-          <button type="submit" className="submit-button">Envoyer le message</button>
+          <button type="submit" className="submit-button">
+            Envoyer le message
+          </button>
         </StyledContactForm>
       </StyledFlexWrapper>
     </StyledContactSection>

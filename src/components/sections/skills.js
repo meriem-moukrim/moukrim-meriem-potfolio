@@ -1,3 +1,7 @@
+/**
+ * Section Skills : Liste des compétences techniques.
+ * Affiche les langages et outils maîtrisés sous forme de listes catégorisées.
+ */
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -84,15 +88,6 @@ const StyledSkillsList = styled.ul`
       font-weight: 600;
     }
   }
-`;
-
-const StyledContactButton = styled.a`
-  ${({ theme }) => theme.mixins.bigButton};
-  display: inline-block;
-  margin-top: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
 `;
 
 const StyledTechDiagram = styled.div`
@@ -331,9 +326,7 @@ const Skills = () => {
 
       <div className="inner">
         <StyledContent>
-          <p>
-            Technologies et outils que je maîtrise à différents niveaux :
-          </p>
+          <p>Technologies et outils que je maîtrise à différents niveaux :</p>
 
           <StyledSkillsList>
             <li>
@@ -361,17 +354,19 @@ const Skills = () => {
               </div>
             </li>
           </StyledSkillsList>
-
-
         </StyledContent>
 
         <StyledTechDiagram>
-
-
           {/* Inner circle - petit cercle */}
           <div className="inner-circle">
             {innerTechs.map((tech, index) => {
-              const { x, y } = getCirclePosition(index, innerTechs.length, innerRadius, centerX, centerY);
+              const { x, y } = getCirclePosition(
+                index,
+                innerTechs.length,
+                innerRadius,
+                centerX,
+                centerY,
+              );
               const itemSize = centerX <= 150 ? 30 : centerX <= 200 ? 35 : 40;
               return (
                 <React.Fragment key={`inner-${index}`}>
@@ -402,7 +397,13 @@ const Skills = () => {
           {/* Outer circle - grand cercle */}
           <div className="outer-circle">
             {outerTechs.map((tech, index) => {
-              const { x, y } = getCirclePosition(index, outerTechs.length, outerRadius, centerX, centerY);
+              const { x, y } = getCirclePosition(
+                index,
+                outerTechs.length,
+                outerRadius,
+                centerX,
+                centerY,
+              );
               const itemSize = centerX <= 150 ? 40 : centerX <= 200 ? 45 : 55;
               return (
                 <React.Fragment key={`outer-${index}`}>

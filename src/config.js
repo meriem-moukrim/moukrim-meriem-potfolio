@@ -1,6 +1,12 @@
+/**
+ * Fichier de configuration globale du site.
+ * Regroupe les paramètres comme l'email, les réseaux sociaux, et la navigation.
+ */
 module.exports = {
+  // L'adresse e-mail affichée et utilisée pour le bouton de contact
   email: 'moukrim.meriem.dev2026@gmail.com',
 
+  // Liste des réseaux sociaux affichés dans les barres latérales et le pied de page
   socialMedia: [
     {
       name: 'GitHub',

@@ -1,16 +1,19 @@
 /**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
+ * Fichier de configuration des APIs Node de Gatsby.
+ * Ce fichier permet de personnaliser la création des pages, la configuration Webpack,
+ * et de définir précisément le schéma GraphQL pour éviter les erreurs de données manquantes.
  */
 
 const path = require('path');
 
+// API Gatsby pour créer des pages dynamiquement.
+// Note : Le dossier 'posts' ayant été supprimé, cette fonction est actuellement vide.
 exports.createPages = async () => {
-  // Post and Tag pages removed as the content/posts directory was deleted.
+  // Les pages de blog et de tags ne sont plus générées.
 };
 
-// https://www.gatsbyjs.org/docs/node-apis/#onCreateWebpackConfig
+// Modification de la configuration Webpack.
+// Utilisé ici pour gérer les alias de chemins et éviter les erreurs SSR avec certaines librairies.
 exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   // https://www.gatsbyjs.org/docs/debugging-html-builds/#fixing-third-party-modules
   if (stage === 'build-html' || stage === 'develop-html') {
@@ -50,6 +53,8 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
   });
 };
 
+// Personnalisation du schéma GraphQL.
+// On définit explicitement les champs du Frontmatter pour éviter que Gatsby ne plante si un champ est absent dans un fichier Markdown.
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = `

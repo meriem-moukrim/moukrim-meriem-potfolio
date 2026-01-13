@@ -1,3 +1,7 @@
+/**
+ * IndexPage : Point d'entrée de la page d'accueil.
+ * Regroupe toutes les sections principales : Hero, About, Skills, Jobs, Featured Projects, et Contact.
+ */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';

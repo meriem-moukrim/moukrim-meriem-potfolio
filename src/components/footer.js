@@ -1,3 +1,7 @@
+/**
+ * Composant Footer : Pied de page du site.
+ * Affiche le copyright et les liens vers le code source, avec l'animation constellation en arrière-plan.
+ */
 import React from 'react';
 
 import styled from 'styled-components';
