@@ -18,6 +18,7 @@
 ---
 
 ## 🚀 À Propos
+
 Bienvenue sur le dépôt de mon portfolio personnel (V4). Ce projet est une vitrine de mes compétences, de mon parcours professionnel et des projets que j'ai réalisés. Il est conçu pour être une expérience interactive, fluide et esthétique.
 
 Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le développement Full Stack, avec un fort intérêt pour les interfaces modernes et réactives.
@@ -25,6 +26,7 @@ Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le dével
 ## 📱 Aperçu
 
 ### 💻 Desktop
+
 <div align="center">
   <img src="./static/readme/desktop-preview.png" alt="Aperçu Desktop" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.5);" />
 </div>
@@ -32,32 +34,36 @@ Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le dével
 <br />
 
 ### 📱 Mobile
+
 <div align="center">
   <img src="./static/readme/mobile-preview.png" alt="Aperçu Mobile" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
 </div>
 
 ## ✨ Fonctionnalités Clés
-*   **Design Responsive** : Une expérience utilisateur fluide sur mobile, tablette et ordinateur.
-*   **Animations Fluides** : Utilisation de `CSSTransition` et `Styled Components` pour des transitions élégantes.
-*   **Mode Sombre** : Thème sombre par défaut pour une esthétique moderne "Cyberpunk/Sci-Fi".
-*   **Sections Dynamiques** :
-    *   **Hero** : Introduction animée avec liens sociaux.
-    *   **Expérience** : Navigation par onglets pour visualiser le parcours.
-    *   **Projets** : Mise en avant des travaux réalisés avec images et liens.
-    *   **Contact** : Formulaire et informations de contact directs.
+
+- **Design Responsive** : Une expérience utilisateur fluide sur mobile, tablette et ordinateur.
+- **Animations Fluides** : Utilisation de `CSSTransition` et `Styled Components` pour des transitions élégantes.
+- **Mode Sombre** : Thème sombre par défaut pour une esthétique moderne "Cyberpunk/Sci-Fi".
+- **Sections Dynamiques** :
+  - **Hero** : Introduction animée avec liens sociaux.
+  - **Expérience** : Navigation par onglets pour visualiser le parcours.
+  - **Projets** : Mise en avant des travaux réalisés avec images et liens.
+  - **Contact** : Formulaire et informations de contact directs.
 
 ## 🛠 Stack Technique
+
 Ce portfolio est construit avec des technologies modernes pour garantir performance et maintenabilité :
 
-| Catégorie | Technologies |
-| :--- | :--- |
-| **Framework** | [Gatsby](https://www.gatsbyjs.com/) (React) |
-| **Langage** | JavaScript (ES6+) |
-| **Styles** | [Styled Components](https://styled-components.com/), CSS3 |
-| **Contenu** | Markdown (pour la gestion facile des projets/jobs) |
-| **Déploiement** | Netlify / GitHub Pages |
+| Catégorie       | Technologies                                              |
+| :-------------- | :-------------------------------------------------------- |
+| **Framework**   | [Gatsby](https://www.gatsbyjs.com/) (React)               |
+| **Langage**     | JavaScript (ES6+)                                         |
+| **Styles**      | [Styled Components](https://styled-components.com/), CSS3 |
+| **Contenu**     | Markdown (pour la gestion facile des projets/jobs)        |
+| **Déploiement** | Netlify / GitHub Pages                                    |
 
 ## 📂 Structure du Projet
+
 Voici une vue d'ensemble de l'organisation des fichiers :
 
 ```bash
@@ -83,21 +89,26 @@ Voici une vue d'ensemble de l'organisation des fichiers :
 Si vous souhaitez cloner et lancer ce projet localement :
 
 1.  **Cloner le dépôt :**
+
     ```bash
     git clone https://github.com/meriem-moukrim/-v4-main.git
     cd -v4-main
     ```
 
 2.  **Installer les dépendances :**
+
     ```bash
     npm install
     ```
-    *(Note : Assurez-vous d'avoir Node.js installé)*
+
+    _(Note : Assurez-vous d'avoir Node.js installé)_
 
 3.  **Lancer le serveur de développement :**
+
     ```bash
     npm run develop
     ```
+
     Le site sera accessible sur `http://localhost:8000`.
 
 4.  **Construire pour la production :**
@@ -105,10 +116,8 @@ Si vous souhaitez cloner et lancer ce projet localement :
     npm run build
     ```
 
-## 📄 Crédits
-Ce projet est basé sur le design V4 open-source de [Brittany Chiang](https://github.com/bchiang7/v4), adapté et personnalisé par **Moukrim Meriem**.
-
 ---
+
 <div align="center">
   <b>Merci de votre visite ! 👋</b>
 </div>
