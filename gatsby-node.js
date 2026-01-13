@@ -105,3 +105,35 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     },
   });
 };
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+    }
+    type Frontmatter {
+      title: String
+      date: Date @dateformat
+      github: String
+      external: String
+      tech: [String]
+      showInProjects: Boolean
+      slug: String
+      company: String
+      location: String
+      range: String
+      url: String
+      certificate: File @fileByRelativePath
+      cover: File @fileByRelativePath
+      fullscreen: String
+      tech_icons: [File] @fileByRelativePath
+      description: String
+      tags: [String]
+      draft: Boolean
+      ios: String
+      android: String
+    }
+  `;
+  createTypes(typeDefs);
+};
