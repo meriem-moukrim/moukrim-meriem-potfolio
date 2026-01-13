@@ -23,8 +23,15 @@ Bienvenue sur le dépôt de mon portfolio personnel (V4). Ce projet est une vitr
 Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le développement Full Stack, avec un fort intérêt pour les interfaces modernes et réactives.
 
 ## 📱 Aperçu
-Voici un aperçu de l'interface mobile, optimisée pour une navigation fluide :
 
+### 💻 Desktop
+<div align="center">
+  <img src="./static/readme/desktop-preview.png" alt="Aperçu Desktop" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.5);" />
+</div>
+
+<br />
+
+### 📱 Mobile
 <div align="center">
   <img src="./static/readme/mobile-preview.png" alt="Aperçu Mobile" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
 </div>
