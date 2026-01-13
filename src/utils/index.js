@@ -27,12 +27,18 @@ export const KEY_CODES = {
 
 export const smoothScroll = (el, duration = 2000) => {
   const target = document.querySelector(el);
-  if (!target) return;
+  if (!target) {
+    return;
+  }
 
   const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-  const offset = 150; // Nav height offset to match reference image
 
-  const scrollElement = window.document.scrollingElement || window.document.body || window.document.documentElement;
+  // Adjust offset based on screen width for mobile responsiveness
+  const isMobile = window.innerWidth <= 768;
+  const offset = isMobile ? 70 : 150; // 70px for mobile header, 150px for desktop
+
+  const scrollElement =
+    window.document.scrollingElement || window.document.body || window.document.documentElement;
 
   anime({
     targets: scrollElement,

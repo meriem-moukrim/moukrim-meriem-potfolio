@@ -9,7 +9,7 @@ const StyledAboutSection = styled.section`
   max-width: 900px;
   scroll-margin-top: 150px;
   @media (max-width: 768px) {
-    scroll-margin-top: 50px;
+    scroll-margin-top: 70px;
   }
   padding-top: 0px;
 
@@ -140,23 +140,33 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Bonjour, je m’appelle Moukrim Meriem, stagiaire en développement web Full Stack et étudiante en Développement Digital à l’OFPPT.
+              Bonjour, je m’appelle Moukrim Meriem, stagiaire en développement web Full Stack et
+              étudiante en Développement Digital à l’OFPPT.
             </p>
 
             <p>
-              J’ai découvert le développement web à travers ma formation, où j’ai commencé à créer des interfaces simples et des applications web en utilisant JavaScript/React et PHP/Laravel. J’aime comprendre comment les choses fonctionnent et transformer des idées en solutions numériques concrète
+              J’ai découvert le développement web à travers ma formation, où j’ai commencé à créer
+              des interfaces simples et des applications web en utilisant JavaScript/React et
+              PHP/Laravel. J’aime comprendre comment les choses fonctionnent et transformer des
+              idées en solutions numériques concrète
             </p>
 
             <p>
-              Aujourd’hui, je continue à développer mes compétences en front-end et back-end à travers des projets académiques, des exercices pratiques et l’auto-apprentissage. Je m’intéresse particulièrement à la création d’applications claires, fonctionnelles et faciles à utiliser.
+              Aujourd’hui, je continue à développer mes compétences en front-end et back-end à
+              travers des projets académiques, des exercices pratiques et l’auto-apprentissage. Je
+              m’intéresse particulièrement à la création d’applications claires, fonctionnelles et
+              faciles à utiliser.
             </p>
 
             <p>
-              Mon objectif est de décrocher un stage qui me permettra d’appliquer mes connaissances, d’apprendre auprès de professionnels et d’évoluer dans un environnement stimulant.
+              Mon objectif est de décrocher un stage qui me permettra d’appliquer mes connaissances,
+              d’apprendre auprès de professionnels et d’évoluer dans un environnement stimulant.
             </p>
           </div>
 
-
+          <ul className="skills-list">
+            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
+          </ul>
         </StyledText>
 
         <StyledPic>
