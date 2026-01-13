@@ -33,11 +33,6 @@ Actuellement en formation à **l'OFPPT CFPMS**, je me spécialise dans le dével
 
 <br />
 
-### 📱 Mobile
-
-<div align="center">
-  <img src="./static/readme/mobile-preview.png" alt="Aperçu Mobile" width="300" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
-</div>
 
 ## ✨ Fonctionnalités Clés
 
