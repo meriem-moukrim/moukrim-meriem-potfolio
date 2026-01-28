@@ -1,5 +1,5 @@
 /**
- * Section Projects : Archive des autres projets.
+ * Section Projects: Archive des autres projets.
  * Présente une grille de projets secondaires sous forme de cartes avec un bouton pour voir l'archive complète.
  */
 import React, { useState, useEffect, useRef } from 'react';

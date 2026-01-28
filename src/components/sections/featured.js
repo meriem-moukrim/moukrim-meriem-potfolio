@@ -12,7 +12,9 @@ import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledFeaturedSection = styled.section`
-  scroll-margin-top: 120px;
+  scroll-margin-top: 90px;
+  padding-top: 15px;
+
   @media (max-width: 768px) {
     scroll-margin-top: 70px;
   }

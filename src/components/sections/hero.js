@@ -9,6 +9,7 @@ import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 import { socialMedia } from '@config';
 import { Icon } from '@components/icons';
+import IconGmail from '../icons/gmail';
 
 const wave = keyframes`
   0% { transform: rotate(0deg); }
@@ -164,11 +165,12 @@ const StyledMobileSocial = styled.div`
     a {
       margin-right: 25px;
       color: var(--light-slate);
-      display: flex; /* Ensures the icon is centered in the link */
+      display: flex;
+      position: relative;
 
       svg,
       img {
-        width: 22px !important; /* Force size to override any other styles */
+        width: 22px !important;
         height: 22px !important;
       }
 
@@ -177,12 +179,72 @@ const StyledMobileSocial = styled.div`
         color: var(--green);
         transform: translateY(-3px);
       }
+
+      /* Only show tooltip on hover to avoid sticking on return */
+      &:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* Tooltip Styling */
+      &::after {
+        content: attr(aria-label);
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-20px);
+
+        background-color: var(--light-navy);
+        color: #fff;
+        font-weight: 600;
+
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-family: var(--font-mono);
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 5px 20px -5px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+        margin-top: 10px;
+      }
+
+      /* Dynamic Background Colors based on Platform */
+      &[aria-label='GitHub']::after {
+        background-color: #333;
+      }
+      &[aria-label='Linkedin']::after {
+        background-color: #0077b5;
+      }
+      &[aria-label='Instagram']::after {
+        background-color: #e1306c;
+      }
+      &[aria-label='Twitter']::after {
+        background-color: #1da1f2;
+      }
+      &[aria-label='WhatsApp']::after {
+        background-color: #25d366;
+      }
+      &[aria-label='Email']::after {
+        background-color: #ea4335;
+      } /* Gmail Red */
+      &[aria-label='Copie email ✔']::after {
+        background-color: #25d366;
+      } /* Success Green */
     }
   }
 `;
 
 const Hero = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
@@ -193,6 +255,13 @@ const Hero = () => {
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
     return () => clearTimeout(timeout);
   }, []);
+
+  const copyEmail = e => {
+    e.preventDefault();
+    navigator.clipboard.writeText('moukrim.meriem.dev2026@gmail.com');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
 
   const one = (
     <h1>
@@ -228,6 +297,13 @@ const Hero = () => {
             <Icon name={name} />
           </a>
         ))}
+      {/* Gmail Icon for Mobile */}
+      <a
+        href="mailto:moukrim.meriem.dev2026@gmail.com"
+        aria-label={emailCopied ? 'Copie email ✔' : 'Email'}
+        onClick={copyEmail}>
+        <IconGmail />
+      </a>
     </StyledMobileSocial>
   );
 
