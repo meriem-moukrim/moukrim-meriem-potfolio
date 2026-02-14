@@ -160,6 +160,10 @@ const StyledSidebar = styled.aside`
     a {
       ${({ theme }) => theme.mixins.link};
       padding: 10px;
+
+      &.active {
+        color: var(--green);
+      }
     }
   }
 
@@ -190,7 +194,7 @@ const StyledSidebar = styled.aside`
   }
 `;
 
-const Menu = ({ toggleTheme, isHome }) => {
+const Menu = ({ toggleTheme, isHome, activeSection, scrolledToTop }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -298,6 +302,7 @@ const Menu = ({ toggleTheme, isHome }) => {
                 {navLinks.map(({ url, name }, i) => (
                   <li key={i}>
                     <Link
+                      className={activeSection === url.split('#')[1] && !scrolledToTop ? 'active' : ''}
                       to={url}
                       onClick={e => {
                         setMenuOpen(false);
@@ -331,6 +336,8 @@ const Menu = ({ toggleTheme, isHome }) => {
 Menu.propTypes = {
   isHome: PropTypes.bool,
   toggleTheme: PropTypes.func.isRequired,
+  activeSection: PropTypes.string,
+  scrolledToTop: PropTypes.bool,
 };
 
 export default Menu;

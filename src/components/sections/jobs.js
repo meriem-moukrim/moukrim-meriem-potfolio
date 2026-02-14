@@ -7,10 +7,9 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { srConfig } from '@config';
 import { KEY_CODES } from '@utils';
-import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { ScrollReveal } from '@components';
 
 const StyledMobileNav = styled.div`
   display: none;
@@ -636,13 +635,7 @@ const Jobs = () => {
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
+  // No longer using sr.reveal here
 
   // Reset hover state when tab changes
   useEffect(() => {
@@ -701,8 +694,8 @@ const Jobs = () => {
     setActiveTabId(prev => (prev < jobsData.length - 1 ? prev + 1 : prev));
   };
 
-  return (
-    <StyledJobsSection id="jobs" ref={revealContainer}>
+  const content = (
+    <StyledJobsSection id="jobs">
       <h2 className="numbered-heading">Expériences & Certificats</h2>
 
       <div className="inner">
@@ -860,6 +853,8 @@ const Jobs = () => {
       )}
     </StyledJobsSection>
   );
+
+  return prefersReducedMotion ? content : <ScrollReveal>{content}</ScrollReveal>;
 };
 
 export default Jobs;

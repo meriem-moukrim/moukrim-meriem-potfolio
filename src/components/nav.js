@@ -81,8 +81,8 @@ const StyledHeader = styled.header`
       height: var(--nav-scroll-height);
       border-radius: 50px;
       background-color: ${props.themeMode === 'light'
-    ? 'rgba(255, 255, 255, 0.7)'
-    : 'rgba(5, 5, 5, 0.7)'};
+        ? 'rgba(255, 255, 255, 0.7)'
+        : 'rgba(5, 5, 5, 0.7)'};
       backdrop-filter: blur(15px);
       border: 1px solid var(--green-tint);
       box-shadow: 0 10px 40px -10px var(--navy-shadow);
@@ -201,7 +201,8 @@ const StyledLinks = styled.div`
           transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
 
-        &:hover {
+        &:hover,
+        &.active {
           color: var(--green);
 
           &:after {
@@ -223,11 +224,42 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection('down');
   const [scrolledToTop, setScrolledToTop] = useState(true);
+  const [activeSection, setActiveSection] = useState(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   const handleScroll = () => {
     setScrolledToTop(window.pageYOffset < 50);
   };
+
+  useEffect(() => {
+    if (!isHome) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // More robust trigger zone
+      threshold: 0,
+    };
+
+    const handleIntersect = entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    navLinks.forEach(({ url }) => {
+      const id = url.split('#')[1];
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [isMounted, isHome]);
 
   useEffect(() => {
     if (prefersReducedMotion) {
@@ -296,6 +328,7 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
                   navLinks.map(({ url, name }, i) => (
                     <li key={i}>
                       <Link
+                        className={activeSection === url.split('#')[1] && !scrolledToTop ? 'active' : ''}
                         to={url}
                         onClick={e => {
                           if (isHome && url.startsWith('/#')) {
@@ -313,7 +346,12 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
               </StyledThemeToggle>
             </StyledLinks>
 
-            <Menu toggleTheme={toggleTheme} isHome={isHome} />
+            <Menu
+              toggleTheme={toggleTheme}
+              isHome={isHome}
+              activeSection={activeSection}
+              scrolledToTop={scrolledToTop}
+            />
           </>
         ) : (
           <>
@@ -334,6 +372,7 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
                       <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
                           <Link
+                            className={activeSection === url.split('#')[1] && !scrolledToTop ? 'active' : ''}
                             to={url}
                             onClick={e => {
                               if (isHome && url.startsWith('/#')) {
@@ -368,7 +407,12 @@ const Nav = ({ isHome, toggleTheme, themeMode }) => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <Menu toggleTheme={toggleTheme} isHome={isHome} />
+                  <Menu
+                    toggleTheme={toggleTheme}
+                    isHome={isHome}
+                    activeSection={activeSection}
+                    scrolledToTop={scrolledToTop}
+                  />
                 </CSSTransition>
               )}
             </TransitionGroup>

@@ -3,9 +3,9 @@
  * Présente le nom, le titre et une brève description avec un bouton de téléchargement du CV.
  */
 import React, { useState, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { motion } from 'framer-motion';
 import styled, { keyframes } from 'styled-components';
-import { navDelay, loaderDelay } from '@utils';
+import { navDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
 import { socialMedia } from '@config';
 import { Icon } from '@components/icons';
@@ -209,13 +209,13 @@ const Hero = () => {
         <a href="https://www.myway.ac.ma/ar" target="_blank" rel="noreferrer">
           CFPMS
         </a>
-        , où je renforce mes compétences en front-end et back-end à travers des projets concrets et
+        , où je renforce mes compétences en front-end et back-end à à travers des projets concrets et
         de l’auto-apprentissage.
       </p>
     </>
   );
   const five = (
-    <a className="email-link" href="/CV_Meriem.pdf" target="_blank" rel="noreferrer">
+    <a className="email-link" href="/slides/Moukrim_Meriem.pdf" target="_blank" rel="noreferrer">
       Voici mon CV !
     </a>
   );
@@ -233,6 +233,29 @@ const Hero = () => {
 
   const items = [one, two, three, four, five, six];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.1,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
   return (
     <StyledHeroSection>
       {prefersReducedMotion ? (
@@ -242,14 +265,15 @@ const Hero = () => {
           ))}
         </>
       ) : (
-        <TransitionGroup component={null}>
-          {isMounted &&
-            items.map((item, i) => (
-              <CSSTransition key={i} classNames="fadeup" timeout={loaderDelay}>
-                <div style={{ transitionDelay: `${i + 1}00ms` }}>{item}</div>
-              </CSSTransition>
+        isMounted && (
+          <motion.div variants={containerVariants} initial="hidden" animate="visible">
+            {items.map((item, i) => (
+              <motion.div key={i} variants={itemVariants}>
+                {item}
+              </motion.div>
             ))}
-        </TransitionGroup>
+          </motion.div>
+        )
       )}
     </StyledHeroSection>
   );

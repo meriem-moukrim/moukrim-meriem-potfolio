@@ -2,11 +2,10 @@
  * Section Skills : Liste des compétences techniques.
  * Affiche les langages et outils maîtrisés sous forme de listes catégorisées.
  */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { ScrollReveal } from '@components';
 
 // Import images from assets
 import reactImg from '../assets/react.png';
@@ -24,6 +23,8 @@ import jiraImg from '../assets/jira.png';
 import firebaseImg from '../assets/Firebase.png';
 import figmaImg from '../assets/figma.png';
 import pycharmImg from '../assets/PyCharm.png';
+import mongodbImg from '../assets/MongoDB.png';
+import vercelImg from '../assets/Vercel.png';
 
 const StyledSkillsSection = styled.section`
   max-width: 1200px;
@@ -95,7 +96,7 @@ const StyledTechDiagram = styled.div`
   width: 100%;
   max-width: 500px;
   height: 500px;
-  margin: -100px auto 0;
+  margin: -240px auto 0;
 
   @media (max-width: 768px) {
     max-width: 400px;
@@ -237,7 +238,6 @@ const CheckIcon = () => (
 );
 
 const Skills = () => {
-  const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const [dimensions, setDimensions] = React.useState({
     innerRadius: 100,
@@ -245,14 +245,6 @@ const Skills = () => {
     centerX: 300,
     centerY: 300,
   });
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -289,7 +281,7 @@ const Skills = () => {
   const { innerRadius, outerRadius, centerX, centerY } = dimensions;
 
   // Classification based on the reference image (Core inner, Tools/Backend outer)
-  const skills = [
+  const skillsData = [
     // Inner Ring (Core Frontend/Web Technologies)
     { name: 'HTML5', image: html5Img, color: '#E34F26', type: 'inner' },
     { name: 'CSS3', image: css3Img, color: '#1572B6', type: 'inner' },
@@ -308,10 +300,12 @@ const Skills = () => {
     { name: 'Jira', image: jiraImg, color: '#0052CC', type: 'outer' },
     { name: 'PyCharm', image: pycharmImg, color: '#000000', type: 'outer' },
     { name: 'Figma', image: figmaImg, color: '#F24E1E', type: 'outer' },
+    { name: 'MongoDB', image: mongodbImg, color: '#47A248', type: 'outer' },
+    { name: 'Vercel', image: vercelImg, color: '#000000', type: 'outer' },
   ];
 
-  const innerTechs = skills.filter(skill => skill.type === 'inner');
-  const outerTechs = skills.filter(skill => skill.type === 'outer');
+  const innerTechs = skillsData.filter(skill => skill.type === 'inner');
+  const outerTechs = skillsData.filter(skill => skill.type === 'outer');
 
   const getCirclePosition = (index, total, radius, centerX, centerY) => {
     const angle = (index * 2 * Math.PI) / total - Math.PI / 2; // Start from top
@@ -320,8 +314,8 @@ const Skills = () => {
     return { x, y, angle };
   };
 
-  return (
-    <StyledSkillsSection id="skills" ref={revealContainer}>
+  const content = (
+    <StyledSkillsSection id="skills">
       <h2 className="numbered-heading">Compétences</h2>
 
       <div className="inner">
@@ -332,32 +326,38 @@ const Skills = () => {
             <li>
               <CheckIcon />
               <div>
-                <strong>Frontend</strong> : React/JavaScript, HTML5, CSS3, Bootstrap.
+                <strong>Frontend</strong> : React/JavaScript, HTML5, CSS3, Bootstrap, Gatsby.js, Responsive Design .
               </div>
             </li>
             <li>
               <CheckIcon />
               <div>
-                <strong>Backend </strong> : PHP/Laravel, Python .
+                <strong>Backend </strong> : PHP/Laravel, Python, REST APIs .
               </div>
             </li>
             <li>
               <CheckIcon />
               <div>
-                <strong>BDD</strong> :SQL, MySQL, Firebase.
+                <strong>BDD</strong> :SQL, MySQL, MongoDB, Firebase.
               </div>
             </li>
             <li>
               <CheckIcon />
               <div>
-                <strong>Outils</strong> : VS Code, Git, Github, Jira, PyCharm et Figma.
+                <strong>Outils</strong> : VS Code, Vercel, Git, Github, Jira, PyCharm et Figma.
               </div>
             </li>
+            <li>
+              <CheckIcon />
+              <div>
+                <strong>Méthodologies de travail</strong> : Agile / Scrum.
+              </div>
+            </li>
+
           </StyledSkillsList>
         </StyledContent>
 
         <StyledTechDiagram>
-          {/* Inner circle - petit cercle */}
           <div className="inner-circle">
             {innerTechs.map((tech, index) => {
               const { x, y } = getCirclePosition(
@@ -370,7 +370,6 @@ const Skills = () => {
               const itemSize = centerX <= 150 ? 30 : centerX <= 200 ? 35 : 40;
               return (
                 <React.Fragment key={`inner-${index}`}>
-                  {/* Ligne de connexion au centre */}
                   <div
                     className="connection-line"
                     style={{
@@ -394,7 +393,6 @@ const Skills = () => {
             })}
           </div>
 
-          {/* Outer circle - grand cercle */}
           <div className="outer-circle">
             {outerTechs.map((tech, index) => {
               const { x, y } = getCirclePosition(
@@ -407,7 +405,6 @@ const Skills = () => {
               const itemSize = centerX <= 150 ? 40 : centerX <= 200 ? 45 : 55;
               return (
                 <React.Fragment key={`outer-${index}`}>
-                  {/* Ligne de connexion au centre */}
                   <div
                     className="connection-line"
                     style={{
@@ -434,6 +431,8 @@ const Skills = () => {
       </div>
     </StyledSkillsSection>
   );
+
+  return prefersReducedMotion ? content : <ScrollReveal>{content}</ScrollReveal>;
 };
 
 export default Skills;

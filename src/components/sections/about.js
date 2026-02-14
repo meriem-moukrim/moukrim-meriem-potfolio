@@ -2,12 +2,11 @@
  * Section About : Présentation personnelle.
  * Contient ma biographie, ma photo et une description de mon parcours.
  */
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { ScrollReveal } from '@components';
 
 const StyledAboutSection = styled.section`
   max-width: 900px;
@@ -123,19 +122,10 @@ const StyledPic = styled.div`
 `;
 
 const About = () => {
-  const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
-
-  return (
-    <StyledAboutSection id="about" ref={revealContainer}>
+  const content = (
+    <StyledAboutSection id="about">
       <h2 className="numbered-heading">À propos de moi</h2>
 
       <div className="inner">
@@ -182,6 +172,8 @@ const About = () => {
       </div>
     </StyledAboutSection>
   );
+
+  return prefersReducedMotion ? content : <ScrollReveal>{content}</ScrollReveal>;
 };
 
 export default About;

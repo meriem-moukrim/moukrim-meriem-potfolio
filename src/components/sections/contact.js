@@ -2,12 +2,11 @@
  * Section Contact : Formulaire ou lien de contact.
  * Invite les utilisateurs à entrer en contact par e-mail ou via les réseaux sociaux.
  */
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { srConfig } from '@config';
-import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 import Constellation from '../constellation';
+import { ScrollReveal } from '@components';
 
 const StyledConstellationContainer = styled.div`
   position: absolute;
@@ -174,17 +173,8 @@ const StyledContactForm = styled.form`
 `;
 
 const Contact = () => {
-  const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const [status, setStatus] = React.useState('');
-
-  useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -214,8 +204,8 @@ const Contact = () => {
     }
   };
 
-  return (
-    <StyledContactSection id="contact" ref={revealContainer}>
+  const content = (
+    <StyledContactSection id="contact">
       <StyledConstellationContainer>
         <Constellation />
       </StyledConstellationContainer>
@@ -239,9 +229,8 @@ const Contact = () => {
                     ? 'var(--green)'
                     : '#d00000',
                 backgroundColor: 'var(--green-tint)',
-                border: `1px solid ${
-                  status.includes('succès') || status.includes('cours') ? 'var(--green)' : '#d00000'
-                }`,
+                border: `1px solid ${status.includes('succès') || status.includes('cours') ? 'var(--green)' : '#d00000'
+                  }`,
                 padding: '12px 20px',
                 borderRadius: 'var(--border-radius)',
                 fontFamily: 'var(--font-mono)',
@@ -295,6 +284,8 @@ const Contact = () => {
       </StyledFlexWrapper>
     </StyledContactSection>
   );
+
+  return prefersReducedMotion ? content : <ScrollReveal>{content}</ScrollReveal>;
 };
 
 export default Contact;
